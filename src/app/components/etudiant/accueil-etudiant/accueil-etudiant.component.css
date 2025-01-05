@@ -1,0 +1,48 @@
+
+.container {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 85vh;
+    width: 100%;
+}
+
+.left {
+    width: 50%;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.left-content {
+    max-width: 500px;
+}
+
+.left h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.left button {
+    background-color:hsl(218, 81%, 75%);;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.left button a {
+    color: white;
+    text-decoration: none;
+}
+
+.right {
+    width: 80%;
+    background: url('event-venue-1597531_1280.jpg') no-repeat center center;
+    background-size: cover;
+    margin-right: -350px;
+    padding-right: -200px;
+}

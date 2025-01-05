@@ -1,0 +1,69 @@
+.event-container {
+    margin-left: 2%;
+    width: 95%;
+    border: 1px solid #ccc;
+    padding: 50px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+p {
+    margin: 10px 0;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    
+}
+
+button {
+    width: 48%;
+    padding: 10px;
+    border: 1px solid #000;
+    cursor: pointer;
+}
+
+
+.accept {
+    background-color: #63cb53;
+    color: black;
+}
+
+.decline {
+    background-color:#e66262;
+    color: black;
+}
+.accept:hover{
+    background-color: #3bc027;
+}
+
+.decline:hover {
+    background-color:#ca4646;
+}
+
+textarea {
+    width: 100%;
+    height: 80px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+
+.send {
+    background-color:hsl(218, 81%, 75%); 
+    border: none;
+    padding: 12px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.send:hover {
+    background-color:hsl(218, 61%, 64%); 
+}
