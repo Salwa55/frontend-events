@@ -1,36 +1,71 @@
 <div class="container">
-    <div class="sidebar">
-        <div class="profile-pic"></div>
-        <h2>Aya Mazhar</h2>
-    </div>
-
-    <div class="profile-settings">
-        <h2>Informations personnelles</h2>
-        <form>
-            <div class="row">
-                <div class="column">
-                    <label>Nom</label>
-                    <input type="text" placeholder="Nom">
-                </div>
-                <div class="column">
-                    <label>Prénom</label>
-                    <input type="text" placeholder="Prénom">
-                </div>
-            </div>
-
-            <label>CIN</label>
-            <input type="text" placeholder="Entrer votre CIN">
-
-            <label>Email</label>
-            <input type="text" placeholder="Entrer votre email">
-
-            <label>Date de naissance</label>
-            <input type="date" >
-
-            <label>Télephone</label>
-            <input type="text" placeholder="Entrer votre numéro de téléphone">
-
-            <button type="submit">Modifier</button>
-        </form>
-    </div>
+  <div class="sidebar">
+    <div class="profile-pic"></div>
+    <h2>{{ username() }}</h2>
+  </div>
+  
+  <div class="profile-settings">
+    <h2>Informations personnelles</h2>
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="column">
+          <label for="lastname">Nom</label>
+          <input 
+            id="lastname"
+            type="text" 
+            formControlName="lastname"
+            placeholder="Nom"
+          >
+          @if (isFieldInvalid('lastname')) {
+            <span class="error">Le nom est requis</span>
+          }
+        </div>
+        <div class="column">
+          <label for="username">Prénom</label>
+          <input 
+            id="username"
+            type="text" 
+            [formControl]="profileForm.controls.username"
+            placeholder="Prénom"
+          >
+          @if (isFieldInvalid('username')) {
+            <span class="error">Le prénom est requis</span>
+          }
+        </div>
+      </div>
+      
+      <label for="email">Email</label>
+      <input 
+        id="email"
+        type="email" 
+        [formControl]="profileForm.controls.email"
+        placeholder="Entrer votre email"
+      >
+      @if (isFieldInvalid('email')) {
+        <span class="error">Email invalide</span>
+      }
+      
+      <label for="telephone">Téléphone</label>
+      <input 
+        id="telephone"
+        type="tel" 
+        [formControl]="profileForm.controls.telephone"
+        placeholder="Entrer votre numéro de téléphone"
+      >
+      @if (isFieldInvalid('telephone')) {
+        <span class="error">Numéro de téléphone invalide</span>
+      }
+      
+      <button 
+        type="submit" 
+        [disabled]="!profileForm.valid || isLoading()"
+      >
+        @if (isLoading()) {
+          Modification en cours...
+        } @else {
+          Modifier
+        }
+      </button>
+    </form>
+  </div>
 </div>

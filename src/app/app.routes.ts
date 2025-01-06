@@ -15,10 +15,6 @@ import { NotificationsRespoComponent } from './components/responsable/notificati
 import { ProfilRespoComponent } from './components/responsable/profil-respo/profil-respo.component';
 import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
 
-
-
-
-
 export const routes: Routes = [
     
     {path :"connexion", component: LoginComponent},
