@@ -1,44 +1,66 @@
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Titre</th>
-        <th scope="col">Date</th>
-        <th scope="col">Lieu</th>
-        <th scope="col">Rôle</th>
-        <th scope="col">Statut</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Event 1</td>
-        <td>1/03/2025</td>
-        <td>Rabat</td>
-        <td>Encadrant</td>
-        <td>En attente</td>
-        <td><a href="/detailsEventRespo">Détails</a></td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Event 2</td>
-        <td>22/02/2025</td>
-        <td>Rabat</td>
-        <td>Encadrant</td>
-        <td>En attente</td>
-        <td><a href="/detailsEventRespo">Détails</a></td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td>Event 3</td>
-        <td>16/01/2025</td>
-        <td>Rabat</td>
-        <td>Encadrant</td>
-        <td>En attente</td>
-        <td><a href="/detailsEventRespo">Détails</a></td>
-      </tr>
-    </tbody>
+<div class="container">
+  <!-- Loading spinner -->
+  <div *ngIf="isLoading" class="text-center my-4">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Error message -->
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <!-- Events table -->
+  <table mat-table [dataSource]="evenements" class="mat-elevation-z8" *ngIf="!isLoading && !errorMessage">
+
+    <!-- Index Column -->
+    <ng-container matColumnDef="index">
+      <th mat-header-cell *matHeaderCellDef> # </th>
+      <td mat-cell *matCellDef="let event; let i = index"> {{ i + 1 }} </td>
+    </ng-container>
+
+    <!-- Titre Column -->
+    <ng-container matColumnDef="titre">
+      <th mat-header-cell *matHeaderCellDef> Titre </th>
+      <td mat-cell *matCellDef="let event"> {{ event.titre }} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let event"> {{ event.description }} </td>
+    </ng-container>
+
+    <!-- Date Fin Column -->
+    <ng-container matColumnDef="dateFin">
+      <th mat-header-cell *matHeaderCellDef> Date Fin </th>
+      <td mat-cell *matCellDef="let event"> {{ event.dateFin | date:'dd/MM/yyyy' }} </td>
+    </ng-container>
+
+    <!-- Responsable Column -->
+    <ng-container matColumnDef="responsable">
+      <th mat-header-cell *matHeaderCellDef> Responsable </th>
+      <td mat-cell *matCellDef="let event"> {{ event.responsable }} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> Action </th>
+    <td mat-cell *matCellDef="let event">
+    <!-- Add your action buttons here, dynamically binding the idEvent -->
+    <button mat-button>
+      <a [routerLink]="['/detailsEventRespo', event.idEvenement]">Action</a>
+    </button>
+     </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- No events message -->
+    <tr *ngIf="evenements.length === 0">
+      <td colspan="6" class="text-center">
+        Aucun événement trouvé
+      </td>
+    </tr>
   </table>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  
+</div>

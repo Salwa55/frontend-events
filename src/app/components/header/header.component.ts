@@ -1,11 +1,34 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import {NgIf} from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
-  imports: [],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  standalone: true,
+  imports: [
+    NgIf
+  ],
+  styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, AfterViewInit {
+  role: string | null = null;
+  constructor(private router: Router) {}
 
+  ngOnInit(): void {
+    this.role = localStorage.getItem('role');
+  }
+
+  ngAfterViewInit(): void {
+    console.log('Role in AfterViewInit:', this.role);
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['connexion']).then(() => {
+      window.location.reload();
+    });; 
+
+  }
+  
 }

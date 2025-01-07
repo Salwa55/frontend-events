@@ -27,7 +27,7 @@ export const routes: Routes = [
     {path :"profil", component: ProfilEtudComponent},
     {path :"responsable", component: AccueilRespoComponent},
     {path :"eventsRespo", component: EventsRespoComponent},
-    {path :"detailsEventRespo", component: DetailsEventrespoComponent},
+    { path: 'detailsEventRespo/:idEvenement', component: DetailsEventrespoComponent },
     {path :"notificationsRespo", component: NotificationsRespoComponent},
     {path :"profilRespo", component: ProfilRespoComponent},
     {path :"connexionAdmin", component: LoginAdminComponent},

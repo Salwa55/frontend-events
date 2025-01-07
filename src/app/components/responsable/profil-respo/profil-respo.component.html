@@ -16,21 +16,17 @@
             formControlName="lastname"
             placeholder="Nom"
           >
-          @if (isFieldInvalid('lastname')) {
-            <span class="error">Le nom est requis</span>
-          }
+          <span *ngIf="isFieldInvalid('lastname')" class="error">Le nom est requis</span>
         </div>
         <div class="column">
           <label for="username">Prénom</label>
           <input 
             id="username"
             type="text" 
-            [formControl]="profileForm.controls.username"
+            formControlName="username"
             placeholder="Prénom"
           >
-          @if (isFieldInvalid('username')) {
-            <span class="error">Le prénom est requis</span>
-          }
+          <span *ngIf="isFieldInvalid('username')" class="error">Le prénom est requis</span>
         </div>
       </div>
       
@@ -38,33 +34,44 @@
       <input 
         id="email"
         type="email" 
-        [formControl]="profileForm.controls.email"
+        formControlName="email"
         placeholder="Entrer votre email"
       >
-      @if (isFieldInvalid('email')) {
-        <span class="error">Email invalide</span>
-      }
+      <span *ngIf="isFieldInvalid('email')" class="error">Email invalide</span>
       
       <label for="telephone">Téléphone</label>
       <input 
         id="telephone"
         type="tel" 
-        [formControl]="profileForm.controls.telephone"
+        formControlName="telephone"
         placeholder="Entrer votre numéro de téléphone"
       >
-      @if (isFieldInvalid('telephone')) {
-        <span class="error">Numéro de téléphone invalide</span>
-      }
+      <span *ngIf="isFieldInvalid('telephone')" class="error">Numéro de téléphone invalide</span>
+
+      <!-- Champs masqués pour role et password -->
+      <input 
+        id="role" 
+        type="text" 
+        formControlName="role"
+        style="display: none;"
+      >
+      <input 
+        id="password" 
+        type="password" 
+        formControlName="password"
+        style="display: none;"
+      >
       
       <button 
         type="submit" 
         [disabled]="!profileForm.valid || isLoading()"
       >
-        @if (isLoading()) {
+        <ng-container *ngIf="isLoading(); else normalButton">
           Modification en cours...
-        } @else {
+        </ng-container>
+        <ng-template #normalButton>
           Modifier
-        }
+        </ng-template>
       </button>
     </form>
   </div>
