@@ -15,10 +15,6 @@ import { NotificationsRespoComponent } from './components/responsable/notificati
 import { ProfilRespoComponent } from './components/responsable/profil-respo/profil-respo.component';
 import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
 
-
-
-
-
 export const routes: Routes = [
     
     {path :"connexion", component: LoginComponent},
@@ -31,7 +27,7 @@ export const routes: Routes = [
     {path :"profil", component: ProfilEtudComponent},
     {path :"responsable", component: AccueilRespoComponent},
     {path :"eventsRespo", component: EventsRespoComponent},
-    {path :"detailsEventRespo", component: DetailsEventrespoComponent},
+    { path: 'detailsEventRespo/:idEvenement', component: DetailsEventrespoComponent },
     {path :"notificationsRespo", component: NotificationsRespoComponent},
     {path :"profilRespo", component: ProfilRespoComponent},
     {path :"connexionAdmin", component: LoginAdminComponent},

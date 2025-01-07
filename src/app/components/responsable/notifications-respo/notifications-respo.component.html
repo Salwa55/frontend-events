@@ -1,27 +1,13 @@
 <br>
-<div class="notifications">
-    <div class="notification">
-        <div class="icon"></div>
-        <div class="content">
-            <strong>Titre</strong>
-            <p>mentioned you in her comment on Invoices</p>
-        </div>
-    </div>
-
-    <div class="notification">
-        <div class="icon"></div>
-        <div class="content">
-            <strong>Titre</strong>
-            <p>mentioned you in her comment on Invoices</p>
-        </div>
-    </div>
-
-    <div class="notification">
-        <div class="icon"></div>
-        <div class="content">
-            <strong>Titre</strong>
-            <p>mentioned you in her comment on Invoices</p>
-        </div>
-    </div>
+<div *ngFor="let notification of notifications">
+    <mat-card class="notification-card">
+        <mat-card-header>
+            <div mat-card-avatar class="icon"></div>
+            <mat-card-title>{{ notification.message }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <p>{{ notification.message }}</p>
+        </mat-card-content>
+    </mat-card>
 </div>
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
