@@ -9,7 +9,7 @@
     <div *ngFor="let evenement of evenements" class="card border-primary mb-3" style="width: 18rem; background: rgba(168, 53, 234, 0.06);">
       <div class="card-header bg-transparent border-primary">{{ evenement.responsable }}</div>
       <div class="card-body text-dark">
-        <a class="card-title text-dark" href="#" style="text-decoration: none; font-weight: bold;">
+        <a class="card-title text-dark" [routerLink]="['/detailevent', evenement.idEvenement]" style="text-decoration: none; font-weight: bold;">
           {{ evenement.titre }}
         </a>
         <p class="card-text">{{ evenement.description }}</p>

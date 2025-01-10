@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { EvenementService } from '../../../services/alleventservice';
 import { Evenement } from '../../../models/allevents';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-events-dispo',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule,RouterLink],
   templateUrl: './events-dispo.component.html',
   styleUrls: ['./events-dispo.component.css']
 })

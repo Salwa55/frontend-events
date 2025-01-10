@@ -22,7 +22,7 @@ export const routes: Routes = [
     {path :"etudiant", component: AccueilEtudiantComponent},
     {path :"eventsdipo", component: EventsDispoComponent},
     {path :"eventsetud", component: EventsEtudiantComponent},
-    {path :"detailevent", component: DetailEventComponent},
+    {path :"detailevent/:idEvenement", component: DetailEventComponent},
     {path :"notifications", component: NotificationsEtudComponent},
     {path :"profil", component: ProfilEtudComponent},
     {path :"responsable", component: AccueilRespoComponent},

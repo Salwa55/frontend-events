@@ -1,43 +1,10 @@
 <div class="container">
+    <!-- Left Section: Event Details -->
     <div class="left">
-        <h2>Titre de event</h2>
-        <br><br>
-        <div class="info">
-             <b>Description:</b> dddddddddddddd ddddddddddddddddd ddddddddddddd dddddddddddddddd ddddddddddd
-        </div>
-        <div class="info">
-            <b>Objectif:</b> oooooooo ooooooooo oooooooo ooooooooooo oooooooooo ooooooooo ooooooooo
-        </div>
-        <div class="info">
-            <b>Programme:</b> qqqqqqq qqqqqqqq qqqqqqqq qqqqqqqqqq
-        </div>
+      <h2>{{ evenement?.titre }}</h2> <!-- Dynamic Title -->
+      <br><br>
+      <div class="info">
+        <b>Description:</b> {{ evenement?.description }} <!-- Dynamic Description -->
+      </div>
+      
     </div>
-
-    <div class="right">
-        <h2>Réserver votre place</h2>
-        <form>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Nom</label>
-                    <input type="text" placeholder="Nom">
-                </div>
-                <div class="form-group">
-                    <label>Prénom</label>
-                    <input type="text" placeholder="Prénom">
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="e-mail">
-            </div>
-
-            <div class="form-group">
-                <label>Télephone</label>
-                <input type="text" placeholder="Télephone">
-            </div>
-
-            <button type="submit">Valider</button>
-        </form>
-    </div>
-</div>
