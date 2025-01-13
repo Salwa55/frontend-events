@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { forkJoin, Observable, throwError } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Evenement } from '../models/allevents';
+import { UserService } from './userservice';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ import { Evenement } from '../models/allevents';
 export class EvenementService {
   private apiUrl = 'http://localhost:8087/api/evene'; // URL de votre API
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private userService: UserService) {}
 
   getAllEvenements(): Observable<Evenement[]> {
     return this.http.get<Evenement[]>(this.apiUrl).pipe(
@@ -18,6 +20,25 @@ export class EvenementService {
       catchError(this.handleError)
     );
   }
+
+  getAllEvenementsWithResponsables(): Observable<Evenement[]> {
+    return this.getAllEvenements().pipe(
+      switchMap((evenements: Evenement[]) => {
+        const userRequests = evenements.map(evenement =>
+          this.userService.getUserByIdMap(Number(evenement.responsable)).pipe(
+            map(user => ({
+              ...evenement,
+              responsableNomComplet: `${user.username} ${user.lastname}`
+            }))
+          )
+        );
+        return forkJoin(userRequests);
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+
   getEvenementsResponsable(): Observable<Evenement[]> {
     const userId = localStorage.getItem('userId');
 

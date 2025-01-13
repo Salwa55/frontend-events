@@ -1,19 +1,27 @@
+<p>Découvrez ici toutes vos participations aux événements et leur statut actuel</p>
+<br>
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>
 
-<h2>Liste des participations</h2>
-
-<table class="table">
+<table *ngIf="participations.length > 0" class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Id de l'événement</th>
+      <th scope="col">Titre de l'événement</th> <!-- Nouveau titre -->
       <th scope="col">Statut</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let participation of participations; let i = index">
+    <tr *ngFor="let participation of participations; index as i">
       <th scope="row">{{ i + 1 }}</th>
-      <td>{{ participation.idEvenement }}</td>
+      <td>{{ participation.titreEvenement }}</td> <!-- Titre de l'événement -->
       <td>{{ participation.acceptEtud }}</td>
-       </tr>
+    </tr>
   </tbody>
 </table>
+
+<div *ngIf="participations.length === 0 && !errorMessage" class="no-participations">
+  <p>Aucune participation trouvée pour l'utilisateur connecté.</p>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br>

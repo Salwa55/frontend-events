@@ -1,26 +1,40 @@
-import { Component, OnInit , inject, signal} from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import { ParticipationService, Participation } from '../../../services/participationservice';
-import { HttpClientModule } from '@angular/common/http';
+import { EvenementService } from '../../../services/alleventservice'; // Import du service des événements
+import { CommonModule } from '@angular/common';
+import { forkJoin, map } from 'rxjs';
 
 @Component({
   selector: 'app-events-etudiant',
   templateUrl: './events-etudiant.component.html',
-  styleUrls: ['./events-etudiant.component.css']
+  styleUrls: ['./events-etudiant.component.css'],
+  standalone: true,
+  imports: [CommonModule],
 })
 export class EventsEtudiantComponent implements OnInit {
-  participations: Participation[] = [];
+  participations: (Participation & { titreEvenement?: string })[] = [];
   errorMessage: string = '';
-  userId: number | null = null; // userId peut être null si non trouvé dans localStorage
+  userId: number | null = null;
 
-  constructor(private participationService: ParticipationService) { }
+  constructor(
+    private participationService: ParticipationService,
+    private evenementService: EvenementService // Service pour récupérer les détails des événements
+  ) {}
 
   ngOnInit(): void {
     this.userId = this.getUserIdFromLocalStorage();
-    
+
     if (this.userId !== null) {
-      this.loadParticipations();
+      this.participationService.getParticipationsByUserId(this.userId).subscribe({
+        next: (participations) => {
+          this.fetchEventTitles(participations);
+        },
+        error: (err) => {
+          this.errorMessage = `Erreur lors de la récupération des participations: ${err.message}`;
+        },
+      });
     } else {
-      this.errorMessage = 'L\'ID de l\'étudiant n\'est pas disponible.';
+      this.errorMessage = 'Utilisateur non connecté.';
     }
   }
 
@@ -30,51 +44,24 @@ export class EventsEtudiantComponent implements OnInit {
     return storedUserId ? parseInt(storedUserId, 10) : null;
   }
 
-  // Charger toutes les participations de l'étudiant
-  loadParticipations(): void {
-    if (this.userId !== null) {
-      this.participationService.getParticipationsByUserId(this.userId).subscribe({
-        next: (data) => {
-          this.participations = data;
-        },
-        error: (err) => {
-          this.errorMessage = err.message;
-        }
-      });
-    }
-  }
+  // Associer les titres des événements aux participations
+  fetchEventTitles(participations: Participation[]): void {
+    const fetches = participations.map((participation) =>
+      this.evenementService.getEvenementById(participation.idEvenement).pipe(
+        map((evenement) => ({
+          ...participation,
+          titreEvenement: evenement.titre,
+        }))
+      )
+    );
 
-  // Ajouter une nouvelle participation
-  addParticipation(): void {
-    if (this.userId !== null) {
-      const newParticipation = {
-        idEvenement: 1, // ID de l'événement auquel l'étudiant souhaite participer
-        idUser: this.userId,
-        acceptEtud: 'oui' // Ou 'non' selon l'acceptation
-      };
-
-      this.participationService.createParticipation(newParticipation).subscribe({
-        next: (data) => {
-          this.participations.push(data); // Ajouter la nouvelle participation à la liste
-        },
-        error: (err) => {
-          this.errorMessage = err.message;
-        }
-      });
-    }
-  }
-
-  // Supprimer une participation
-  deleteParticipation(id: number): void {
-    if (this.userId !== null) {
-      this.participationService.deleteParticipation(id).subscribe({
-        next: () => {
-          this.participations = this.participations.filter(p => p.idEvenement !== id); // Supprimer de la liste
-        },
-        error: (err) => {
-          this.errorMessage = err.message;
-        }
-      });
-    }
+    forkJoin(fetches).subscribe({
+      next: (results) => {
+        this.participations = results;
+      },
+      error: (err) => {
+        this.errorMessage = `Erreur lors de la récupération des événements: ${err.message}`;
+      },
+    });
   }
 }

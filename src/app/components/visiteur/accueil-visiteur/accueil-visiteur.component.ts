@@ -23,9 +23,9 @@ export class AccueilVisiteurComponent {
 
   private loadEvenements(): void {
     this.isLoading.set(true);
-    this.evenementService.getAllEvenements().subscribe({
+    this.evenementService.getAllEvenementsWithResponsables().subscribe({
       next: (evenements) => {
-        console.log('Événements reçus:', evenements); // Pour déboguer
+        console.log('Événements enrichis avec responsables:', evenements);
         this.evenements = evenements;
       },
       error: (error) => {

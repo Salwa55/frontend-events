@@ -1,10 +1,32 @@
 <div class="container">
-    <!-- Left Section: Event Details -->
     <div class="left">
-      <h2>{{ evenement?.titre }}</h2> <!-- Dynamic Title -->
+      <h2>{{ evenement.titre }}</h2> 
       <br><br>
+
       <div class="info">
-        <b>Description:</b> {{ evenement?.description }} <!-- Dynamic Description -->
+        <b>Description:</b> {{ evenement.description }} 
       </div>
-      
+
+      <div class="info">
+        <b> Lieu:</b> {{ evenement.lieu }} 
+      </div>
+
+      <div class="info">
+        <b> Nombre de participants: </b>{{ evenement.nbrParticipant}}
+      </div>
+
+      <div class="info">
+        <b> Date fin: </b>{{ evenement.dateFin | date: 'dd/MM/yyyy' }}
+      </div>
+
     </div>
+
+    <div class="right">
+      <h2>Réserver votre place</h2>
+      <p>Ne manquez pas l'opportunité de participer à cet événement unique ! Réservez votre place dès maintenant et assurez votre participation. Les places sont limitées, alors agissez rapidement !</p>
+      <form (submit)="reservePlace(); $event.preventDefault();">
+          <button type="submit">Réserver</button>
+      </form>
+    </div>
+
+</div>

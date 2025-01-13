@@ -1,16 +1,30 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/Users';
+
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private apiUrl = 'http://localhost:8087/api/users'; // Ajustez l'URL selon votre configuration
+  private userCache = new Map<number, User>();
 
   constructor(private http: HttpClient) { }
+
+  // Récupération d'un utilisateur par ID avec cache
+  getUserByIdMap(id: number): Observable<User> {
+    if (this.userCache.has(id)) {
+      return of(this.userCache.get(id)!);
+    }
+    return this.http.get<User>(`${this.apiUrl}/${id}`).pipe(
+      tap(user => this.userCache.set(id, user)),
+      catchError(this.handleError)
+    );
+  }
 
   // Création d'un utilisateur
   createUser(user: Omit<User, 'id'>): Observable<User> {

@@ -11,7 +11,7 @@
     width: 40%;
     background-color: hsl(218, 81%, 75%);
     color: black;
-    padding: 50px 40px;
+    padding: 110px 40px;
 }
 
 .left h2 {
@@ -76,6 +76,7 @@ button {
     font-size: 16px;
     width: 690px;
     font-weight: bold;
+    margin-top: 150px;
 }
 
 button:hover {

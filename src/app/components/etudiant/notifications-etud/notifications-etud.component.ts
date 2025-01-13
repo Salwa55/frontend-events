@@ -4,6 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { NgFor } from '@angular/common';
 import { NotifService } from '../../../services/notifservice';
 import { Notification } from '../../../models/notification';
+
+
 @Component({
   selector: 'app-notifications-etud',
   standalone: true,
@@ -13,40 +15,24 @@ import { Notification } from '../../../models/notification';
     NgFor
   ],
   templateUrl: './notifications-etud.component.html',
-  styleUrls: ['./notifications-etud.component.css'], // Remarque : styleUrls au pluriel
+  styleUrls: ['./notifications-etud.component.css'],
 })
 
 export class NotificationsEtudComponent implements OnInit{
   notifications: Notification[] = [];
-  userId: number = 0; // Initialisation de l'idUser
+  userId: number | null = null;
 
-  constructor(private notifservice: NotifService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.loadUserId();
-    this.loadNotifications();
+    this.userId = this.getUserIdFromLocalStorage();
   }
 
-  loadUserId(): void {
-    // Récupérer l'idUser depuis le localStorage
-    const userId = localStorage.getItem('userId');
-    if (userId) {
-      this.userId = parseInt(userId, 10); // Convertir en nombre
-    }
+  // Récupérer l'ID de l'utilisateur depuis localStorage
+  getUserIdFromLocalStorage(): number | null {
+    const storedUserId = localStorage.getItem('userId');
+    return storedUserId ? parseInt(storedUserId, 10) : null;
   }
 
-  loadNotifications(): void {
-    if (this.userId > 0) {
-      this.notifservice.getNotificationsByUserId(this.userId).subscribe(
-        (data) => {
-          this.notifications = data;
-        },
-        (error) => {
-          console.error('Error loading notifications:', error);
-        }
-      );
-    } else {
-      console.error('idUser not found in localStorage.');
-    }
-  }
+ 
 }

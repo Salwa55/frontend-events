@@ -8,7 +8,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-events-dispo',
   standalone: true,
-  imports: [CommonModule, HttpClientModule,RouterLink],
+  imports: [CommonModule, HttpClientModule, RouterLink],
   templateUrl: './events-dispo.component.html',
   styleUrls: ['./events-dispo.component.css']
 })
@@ -24,9 +24,9 @@ export class EventsDispoComponent {
 
   private loadEvenements(): void {
     this.isLoading.set(true);
-    this.evenementService.getAllEvenements().subscribe({
+    this.evenementService.getAllEvenementsWithResponsables().subscribe({
       next: (evenements) => {
-        console.log('Événements disponibles:', evenements); // Pour déboguer
+        console.log('Événements enrichis avec responsables:', evenements);
         this.evenements = evenements;
       },
       error: (error) => {
