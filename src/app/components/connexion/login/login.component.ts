@@ -47,6 +47,10 @@ export class LoginComponent implements OnInit, AfterViewInit  {
             this.router.navigate(['responsable']).then(() => {
               window.location.reload();
             });;  // Rediriger vers la page Responsable
+          }else if (role === 'Admin') {
+            this.router.navigate(['statistics']).then(() => {
+              window.location.reload();
+            });;  // Rediriger vers la page Admin
           }
 
           // Affichage dans la console

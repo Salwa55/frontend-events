@@ -1,22 +1,36 @@
-<br>
 <div class="event-container">
-    <h2>Détails de l'event</h2>
+    <h2>{{ eventDetails.titre }}</h2>
     <br>
     <p><strong>Description :</strong> {{ eventDetails.description }}</p>
     <p><strong>Lieu :</strong> {{ eventDetails.lieu }}</p>
     <p><strong>Nombre de participants :</strong> {{ eventDetails.nbrParticipant }}</p>
     <p><strong>Rôle :</strong> {{ eventDetails.role }}</p>
     <p><strong>Décision :</strong> {{ eventDetails.decision }}</p>
-    <p *ngIf="eventDetails.decision === 'refus'"><strong>Cause de refus :</strong> {{ eventDetails.causeRefus }}</p>
-    <br><br><br>
+
+
+    <br>
     <div class="button-group">
-        <button class="accept" (click)="Accepter()">Accepter</button>
+      <button *ngIf="eventDetails.decision ==='en attente'" class="accept" (click)="acceptEvent()">Accepter</button>
+      <button *ngIf="eventDetails.decision==='en attente'" class="decline" (click)="openRefus()">Refuser</button>
     </div>
-    <br><br><br>
-    <div *ngIf="eventDetails.decision === 'refus'">
-        Au cas de refus, veuillez saisir la cause de refus:
-        <textarea placeholder="Entrer rapport de cause de refus"></textarea>
-    </div>
-    <button class="decline" (click)="Refuser()">Refuser</button>
 </div>
-<br>
+
+<br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

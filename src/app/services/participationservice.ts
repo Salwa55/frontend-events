@@ -1,15 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 
 export interface Participation {
+  idParticipation: number;
   idEvenement: number;
   idUser: number;
   acceptEtud: string;
 }
 
 export interface ParticipationDTO {
+  idParticipation?: number;
   idEvenement: number;
   idUser: number;
   acceptEtud: string;
@@ -37,6 +39,13 @@ export class ParticipationService {
       .pipe(
         catchError(this.handleError)
       );
+  }
+
+  getParticipationCount(): Observable<number> {
+    return this.getAllParticipations().pipe(
+      map((participations) => participations.length), // Compter les participations
+      tap((count) => console.log('Nombre total des participations:', count))
+    );
   }
 
   // Créer une nouvelle participation
@@ -74,7 +83,7 @@ export class ParticipationService {
   // Gestionnaire d'erreurs
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Une erreur est survenue';
-    
+
     if (error.error instanceof ErrorEvent) {
       // Erreur côté client
       errorMessage = `Erreur: ${error.error.message}`;
@@ -91,8 +100,25 @@ export class ParticipationService {
           errorMessage = `Code d'erreur: ${error.status}, Message: ${error.message}`;
       }
     }
-    
+
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }
+
+  // Récupérer les participations en attente
+  getParticipationsEnAttente(): Observable<Participation[]> {
+    return this.http.get<Participation[]>(`${this.apiUrl}/en-attente`)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  accepterParticipation(idParticipation: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${idParticipation}/accepter`, {});
+  }
+
+  refuserParticipation(idParticipation: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${idParticipation}/refuser`, {});
+  }
+
 }

@@ -1,0 +1,28 @@
+<p>Consultez les décisions des responsables pour assurer un suivi efficace et transparent des validations</p>
+ <br>
+ <!-- Vérification si les événements sont chargés -->
+ <div *ngIf="isLoading();" class="search" style="    margin-left: 260px;">
+     <p>Chargement des événements disponibles...</p>
+ </div>
+   
+ <table  > 
+   <thead class="thead-dark">
+     <tr>
+       <th scope="col">#</th>
+       <th scope="col">Titre de l'événement</th> 
+       <th scope="col">Responsable</th>
+       <th scope="col">Décision</th>
+       <th scope="col">Cause</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor="let evenement of evenements; index as i">
+       <th scope="row">{{ i + 1 }}</th>
+       <td>{{ evenement.titre }}</td>
+       <td>{{ evenement.responsableNomComplet }}</td>
+       <td>{{ evenement.decision }}</td>
+         <td>{{ evenement.causeRefus }}</td>
+     </tr>
+   </tbody>
+ </table>
+ <br>

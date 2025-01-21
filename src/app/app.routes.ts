@@ -13,7 +13,12 @@ import { EventsRespoComponent } from './components/responsable/events-respo/even
 import { DetailsEventrespoComponent } from './components/responsable/details-eventrespo/details-eventrespo.component';
 import { NotificationsRespoComponent } from './components/responsable/notifications-respo/notifications-respo.component';
 import { ProfilRespoComponent } from './components/responsable/profil-respo/profil-respo.component';
-import { LoginAdminComponent } from './components/admin/login-admin/login-admin.component';
+import { ListeEventsComponent } from './components/admin/liste-events/liste-events.component';
+import { ModifierEventComponent } from './components/admin/modifier-event/modifier-event.component';
+import { AjouterEventComponent } from './components/admin/ajouter-event/ajouter-event.component';
+import { AllParticipantsComponent } from './components/admin/all-participants/all-participants.component';
+import { StatisticsComponent } from './components/admin/statistics/statistics.component';
+import { DecisionsResposComponent } from './components/admin/decisions-respos/decisions-respos.component';
 
 export const routes: Routes = [
     
@@ -30,6 +35,11 @@ export const routes: Routes = [
     { path: 'detailsEventRespo/:idEvenement', component: DetailsEventrespoComponent },
     {path :"notificationsRespo", component: NotificationsRespoComponent},
     {path :"profilRespo", component: ProfilRespoComponent},
-    {path :"connexionAdmin", component: LoginAdminComponent},
+    {path :"listeEvents", component: ListeEventsComponent},
+    {path :"modifierevent/:idEvenement", component: ModifierEventComponent},
+    {path :"ajouterevent", component: AjouterEventComponent},
+    {path :"participants", component: AllParticipantsComponent},
+    {path :"statistics", component: StatisticsComponent},
+    {path :"decisionsresponsables", component: DecisionsResposComponent},
 
 ];

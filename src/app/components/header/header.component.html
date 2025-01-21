@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left:25px; padding-right:25px;">
-  <a class="navbar-brand" href="etudiant"><span style="color:blue;">É𝒹𝓊</span>𝐸𝓋𝑒𝓃𝓉</a>
+  <a *ngIf="!role" class="navbar-brand" href=""><span style="color:blue;">É𝒹𝓊</span>𝐸𝓋𝑒𝓃𝓉</a>
+  <a *ngIf="role==='Etudiant'" class="navbar-brand" href="etudiant"><span style="color:blue;">É𝒹𝓊</span>𝐸𝓋𝑒𝓃𝓉</a>
+  <a *ngIf="role==='Responsable'" class="navbar-brand" href="responsable"><span style="color:blue;">É𝒹𝓊</span>𝐸𝓋𝑒𝓃𝓉</a>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>

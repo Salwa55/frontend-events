@@ -9,5 +9,6 @@ export interface Evenement {
     role?: string;
     lieu?: string;
     nbrParticipant?: number;
+    decision:string;
+    causeRefus:string;
   }
-  

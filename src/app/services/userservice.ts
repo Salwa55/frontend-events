@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import {catchError, map, tap} from 'rxjs/operators';
 import { User } from '../models/Users';
 
 
@@ -42,6 +42,29 @@ export class UserService {
     );
   }
 
+  getUsersCount(): Observable<number> {
+    return this.getAllUsers().pipe(
+      map((users) => users.length), // Compter les users
+      tap((count) => console.log('Nombre total des users:', count))
+    );
+  }
+
+
+  // Récupération des responsables
+  getResponsables(): Observable<User[]> {
+    return this.http.get<User[]>(`${this.apiUrl}/responsables`).pipe(
+      tap(responsables => console.log('Responsables récupérés:', responsables)),
+      catchError(this.handleError)
+    );
+  }
+
+  getRespoCount(): Observable<number> {
+    return this.getResponsables().pipe(
+      map((responsables) => responsables.length), // Compter les respos
+      tap((count) => console.log('Nombre total des respos:', count))
+    );
+  }
+
   // Récupération d'un utilisateur par ID
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.apiUrl}/${id}`).pipe(
@@ -76,7 +99,7 @@ export class UserService {
   // Gestion des erreurs
   private handleError(error: HttpErrorResponse) {
     let errorMessage = 'Une erreur est survenue';
-    
+
     if (error.error instanceof ErrorEvent) {
       // Erreur côté client
       errorMessage = `Erreur: ${error.error.message}`;
@@ -99,7 +122,7 @@ export class UserService {
           errorMessage = `Code d'erreur: ${error.status}, Message: ${error.message}`;
       }
     }
-    
+
     console.error(errorMessage);
     return throwError(() => new Error(errorMessage));
   }

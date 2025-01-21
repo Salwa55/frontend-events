@@ -1,5 +1,5 @@
 export interface User {
-    id?: number;
+    id: number;
     username: string;
     lastname: string;
     telephone: string;
@@ -7,4 +7,3 @@ export interface User {
     password: string;
     roleUser: string;
   }
-  

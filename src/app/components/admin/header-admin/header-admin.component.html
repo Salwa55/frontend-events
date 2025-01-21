@@ -1,12 +1,13 @@
 <aside class="sidebar">
     <div class="logo">
-        <a href="#">AdminPanel</a>
+        <a class="navbar-brand" href="statistics"><span style="color:black;">É𝒹𝓊</span>𝐸𝓋𝑒𝓃𝓉</a>
     </div>
 
     <nav class="nav-links">
-        <a href="/connexionAdmin">Tableau de Bord</a>
-        <a href="#">Utilisateurs</a>
-        <a href="#">Paramètres</a>
-        <a href="#">Déconnexion</a>
+        <a class="lien" href="statistics">Statistiques</a>
+        <a class="lien" href="listeEvents">Service des événements</a>
+        <a class="lien" href="participants">Gestion des participants</a>
+        <a class="lien" href="decisionsresponsables">Décisions responsables</a>
+        <a (click)="logout()" class="lien" id="logout" >Déconnexion</a>
     </nav>
 </aside>

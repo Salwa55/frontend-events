@@ -1,69 +1,76 @@
 .event-container {
-    margin-left: 2%;
-    width: 95%;
+    margin: 20px auto;
+    width: 100%;
+    max-width: 900px;
     border: 1px solid #ccc;
-    padding: 50px;
+    padding: 60px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background-color: #fff;
+    border-radius: 8px;
 }
 
 h2 {
-    margin-top: 0;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
 p {
     margin: 10px 0;
+    font-size: 1rem;
+    color: #333;
 }
 
 .button-group {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin: 20px 0;
-    
 }
 
 button {
-    width: 48%;
-    padding: 10px;
-    border: 1px solid #000;
+    padding: 10px 100px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
-
 
 .accept {
     background-color: #63cb53;
-    color: black;
+    color: #fff;
+    border: 1px solid #63cb53;
+}
+
+.accept:hover {
+    background-color: #3bc027;
+    border-color: #3bc027;
 }
 
 .decline {
-    background-color:#e66262;
-    color: black;
-}
-.accept:hover{
-    background-color: #3bc027;
+    background-color: #e66262;
+    color: #fff;
+    border: 1px solid #e66262;
 }
 
 .decline:hover {
-    background-color:#ca4646;
+    background-color: #ca4646;
+    border-color: #ca4646;
 }
 
-textarea {
-    width: 100%;
-    height: 80px;
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #000;
-    box-sizing: border-box;
-}
 
 .send {
-    background-color:hsl(218, 81%, 75%); 
+    background-color: hsl(218, 81%, 75%);
+    color: #fff;
     border: none;
     padding: 12px;
+    margin-top: 10px;
+    border-radius: 5px;
     width: 100%;
     cursor: pointer;
+    font-size: 1rem;
 }
 
 .send:hover {
-    background-color:hsl(218, 61%, 64%); 
+    background-color: hsl(218, 61%, 64%);
 }

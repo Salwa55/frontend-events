@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import {CommonModule} from '@angular/common';
+import { HeaderAdminComponent } from './components/admin/header-admin/header-admin.component';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +13,12 @@ import {CommonModule} from '@angular/common';
     RouterOutlet,
     HeaderComponent,
     FooterComponent,
+    HeaderAdminComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent implements OnInit {
   title = 'frontend-events';
   userRole: string | null = null;

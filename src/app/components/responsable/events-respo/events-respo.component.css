@@ -1,0 +1,71 @@
+p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    margin: 20px 0;
+    background-color: #dfeefdcf;
+    padding: 10px 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .no-participations {
+    color: #555;
+    text-align: center;
+    font-style: italic;
+    margin-top: 20px;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+  }
+
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+  }
+
+  .table th {
+    background-color: #c5dff9e6;
+    color: rgb(87, 86, 86);
+  }
+
+  .table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  .table tbody tr:hover {
+    background-color: #ddd;
+  }
+  .table a {
+    display: inline-block;
+    color: #a2abb1;
+    text-decoration: none; /* Pas de soulignement */
+    transition: background-color 0.3s, transform 0.2s; /* Animation fluide */
+  }
+
+  .table a:hover {
+    color: #679bbf;
+    transform: scale(1.05); /* Légère mise en avant */
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* Ombre de texte */
+  }
+
+  .table a:active {
+    background-color: #b8bcbd;
+    transform: scale(1); /* Réinitialisation de l'agrandissement */
+  }
+
+
+

@@ -1,0 +1,94 @@
+<h3>Modifier cet événement</h3>
+<br>
+<div class="container" *ngIf="!isLoading() && evenement; else loading">
+  <form>
+    <div class="row">
+      <div class="col-25">
+        <label for="titre">Titre</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="titre" [(ngModel)]="evenement.titre" name="titre" placeholder="Titre de l'événement..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="description">Description</label>
+      </div>
+      <div class="col-75">
+        <textarea id="description" [(ngModel)]="evenement.description" name="description" placeholder="Description de l'événement.." style="height:100px"></textarea>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="lieu">Lieu</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="lieu" [(ngModel)]="evenement.lieu" name="lieu" placeholder="Lieu de l'événement..">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="nbrParticipant">Nombre de participants</label>
+      </div>
+      <div class="col-75">
+        <input class="nb" type="number" id="nbrParticipant" [(ngModel)]="evenement.nbrParticipant" name="nbrParticipant" min="0" max="100">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="dateDebut">Date début</label>
+      </div>
+      <div class="col-75">
+        <input type="date" id="dateDebut" [ngModel]="evenement.dateDebut | date:'yyyy-MM-dd'" (ngModelChange)="evenement.dateDebut = $event" name="dateDebut">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="dateFin">Date fin</label>
+      </div>
+      <div class="col-75">
+        <input type="date" id="dateFin" [ngModel]="evenement.dateFin | date:'yyyy-MM-dd'" (ngModelChange)="evenement.dateFin = $event" name="dateFin">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="responsable">Responsable</label>
+      </div>
+      <div class="col-75">
+        <select id="responsable" [(ngModel)]="evenement.responsable" name="responsable">
+          <option *ngFor="let responsable of responsables" [value]="responsable.id">
+            {{ responsable.lastname }} {{ responsable.username }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-25">
+        <label for="role">Role</label>
+      </div>
+      <div class="col-75">
+        <input type="text" id="role" [(ngModel)]="evenement.role" name="role" placeholder="Role du responsable..">
+      </div>
+    </div>
+<br>
+    <div class="row">
+      <button id="submit" type="button" (click)="onModifierEvenement()" >Modifier cet événement</button>
+    </div>
+    
+  </form>
+</div>
+
+<ng-template #loading>
+  <div class="loading">Chargement en cours...</div>
+</ng-template>
+
+<div *ngIf="errorMessage" class="error-message">
+  {{ errorMessage }}
+</div>

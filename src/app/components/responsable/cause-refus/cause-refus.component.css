@@ -1,0 +1,125 @@
+mat-form-field {
+  width: 100%;
+}
+
+mat-horizontal-stepper {
+  margin-bottom: 24px;
+}
+
+.mat-dialog-content {
+  overflow: visible;
+}
+
+.close-button {
+  margin-bottom: 45px;
+  margin-left: auto;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.form-field {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.form-field:last-child {
+  margin-right: 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-dialog-content {
+  overflow: visible;
+}
+
+.step-form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.formGroup{
+  margin-top: 1cm;
+}
+
+.right-button{
+  margin-bottom: 7px;
+  margin-left: auto;
+}
+
+.header {
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* Add this to your component CSS */
+.file-input-container {
+  display: flex;
+  align-items: center;
+}
+
+.file-input-container button {
+  margin-right: 8px;
+}
+
+.mat-form-field-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.mat-form-field-flex {
+  display: flex;
+  align-items: center;
+}
+
+textarea {
+  max-width: 95% !important;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  box-sizing: border-box;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 10px;
+}
+
+button {
+  padding: 10px 100px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accept {
+  background-color: #e66262;
+  color: #fff;
+  border: 1px solid #e66262;
+}
+
+.accept:hover {
+  background-color: #ca4646;
+  border-color: #ca4646;
+}

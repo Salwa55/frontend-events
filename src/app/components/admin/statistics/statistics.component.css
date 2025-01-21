@@ -1,0 +1,44 @@
+.statistics-container {
+    text-align: center;
+    margin: 20px auto;
+    padding: 20px;
+    width: 1000px !important;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-left: 500px !important;
+  }
+  
+  .statistics-container h2 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .statistics-container p {
+    color: #555;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .stat {
+    text-align: center;
+  }
+  
+  .stat h2 {
+    color: #007bff;
+    font-size: 36px;
+    margin: 0;
+  }
+  
+  .stat p {
+    color: #666;
+    margin: 5px 0 0;
+    font-size: 14px;
+  }
+  

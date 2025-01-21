@@ -1,0 +1,19 @@
+<div mat-dialog-title class="header">
+  <p>Au cas de refus, veuillez saisir la cause de refus :</p>
+  <mat-icon mat-dialog-close #close_button class="close-button">clear</mat-icon>
+</div>
+<div mat-dialog-content>
+  <form [formGroup]="_causeRefusForm" (ngSubmit)="onSubmit()" class="step-form">
+    <div>
+      <textarea formControlName="causeRefus" style="width:550px;"
+        placeholder="Entrer rapport de cause de refus">
+      </textarea>
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="accept">
+        Refuser
+      </button>
+    </div>
+  </form>
+</div>

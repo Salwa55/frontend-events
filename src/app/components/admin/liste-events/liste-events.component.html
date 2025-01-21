@@ -1,0 +1,37 @@
+<p>Gérez efficacement les
+   événements pour assurer une organisation optimale !</p>
+<br>
+<!-- Vérification si les événements sont chargés -->
+<div *ngIf="isLoading();" class="search" style="    margin-left: 260px;">
+    <p>Chargement des événements disponibles...</p>
+</div>
+  
+<table  > 
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Titre de l'événement</th> 
+      <th scope="col">Description</th>
+      <th scope="col">Date Fin</th>
+      <th scope="col">Responsable</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let evenement of evenements; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ evenement.titre }}</td>
+      <td>{{ evenement.description }}</td>
+      <td>{{ evenement.dateFin | date: 'dd/MM/yyyy' }}</td> 
+      <td>{{ evenement.responsableNomComplet }}</td>
+      <td>
+        <a class="btn-modifier" [routerLink]="['/modifierevent', evenement.idEvenement]">Modifier</a>
+        <button class="btn-supprimer" (click)="confirmDelete(evenement.idEvenement)">Supprimer</button>
+      </td>      
+    </tr>
+  </tbody>
+</table>
+<br>
+<div>
+  <button type="button" class="btn btn-primary" [routerLink]="['/ajouterevent']" style="margin-left:88%;">Ajouter un événement</button>
+</div>

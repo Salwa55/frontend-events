@@ -5,6 +5,7 @@ import { Evenement } from '../../../models/allevents';
 import { MatTableModule } from '@angular/material/table';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import{RouterLink} from '@angular/router';
+import {MatIcon} from '@angular/material/icon';
 
 @Component({
   selector: 'app-events-respo',
@@ -13,7 +14,8 @@ import{RouterLink} from '@angular/router';
     CommonModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    RouterLink
+    RouterLink,
+    MatIcon
   ],
   templateUrl: './events-respo.component.html',
   styleUrls: ['./events-respo.component.css']
